@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pubnub History Reverse Gist</title>
+    <script src="http://cdn.pubnub.com/pubnub-3.7.8.min.js"></script>
+</head>
+<body>
+<a href="index-3.7.9.html">Throw error in 3.7.9</a>
+<h1>See JavaScript console output</h1>
+<p>When you throw error in :error callback in JS SDK >= 3.7.9, the next error message appears regardless of your error:
+<br><code>Uncaught TypeError: Cannot read property 'status' of null</code></p>
+<script>
+    var pubnub = PUBNUB.init({
+        subscribe_key: 'fake',
+        publish_key: 'fake'
+    });
+
+    pubnub.publish({
+        channel: 'demo',
+        message: 'demo',
+        callback: function (result) {
+        },
+        error: function () {
+            throw new Error("The Blah");
+        }
+    });
+</script>
+</body>
+</html>
